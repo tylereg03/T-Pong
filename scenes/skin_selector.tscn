@@ -1,0 +1,122 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2dqeu2i1mjuv"]
+
+[ext_resource type="Script" path="res://scripts/skin_selector.gd" id="1_vjtsq"]
+[ext_resource type="Texture2D" uid="uid://bvmwncpj846br" path="res://assets/paddle.png" id="2_em8sk"]
+[ext_resource type="Texture2D" uid="uid://db51ix2ooxq61" path="res://assets/paddle_m.png" id="3_npq22"]
+[ext_resource type="Texture2D" uid="uid://cjbiuvquk0b6u" path="res://assets/paddle_h.png" id="4_3gn6x"]
+[ext_resource type="Texture2D" uid="uid://bimf65m0nekf5" path="res://assets/easy.png" id="5_sinys"]
+[ext_resource type="Texture2D" uid="uid://px7uf6mlpxwy" path="res://assets/medium.png" id="6_hrec4"]
+[ext_resource type="Texture2D" uid="uid://boxlncp5cuq7d" path="res://assets/hard.png" id="7_qup8o"]
+[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/PixeloidSansBold-PKnYd.ttf" id="8_dj512"]
+[ext_resource type="Texture2D" uid="uid://bgxw52jxxmr24" path="res://assets/left.png" id="9_6qmhv"]
+[ext_resource type="Texture2D" uid="uid://csyji8dmai531" path="res://assets/right.png" id="10_4tru4"]
+
+[node name="SkinSelector" type="CanvasLayer"]
+script = ExtResource("1_vjtsq")
+textures = Array[Texture2D]([ExtResource("2_em8sk"), ExtResource("3_npq22"), ExtResource("4_3gn6x")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Difficulties" type="HBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 60.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="Easy" type="Button" parent="Difficulties"]
+layout_mode = 2
+icon = ExtResource("5_sinys")
+icon_alignment = 1
+
+[node name="Medium" type="Button" parent="Difficulties"]
+layout_mode = 2
+icon = ExtResource("6_hrec4")
+icon_alignment = 1
+
+[node name="Hard" type="Button" parent="Difficulties"]
+layout_mode = 2
+icon = ExtResource("7_qup8o")
+icon_alignment = 1
+
+[node name="DifficultiesTexts" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.5
+offset_top = 260.0
+offset_right = 191.5
+offset_bottom = 300.0
+grow_horizontal = 2
+theme_override_constants/separation = 90
+alignment = 1
+
+[node name="EasyText" type="Label" parent="DifficultiesTexts"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_dj512")
+theme_override_font_sizes/font_size = 16
+text = "Easy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MediumText" type="Label" parent="DifficultiesTexts"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_dj512")
+theme_override_font_sizes/font_size = 16
+text = "Medium"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HardText" type="Label" parent="DifficultiesTexts"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_dj512")
+theme_override_font_sizes/font_size = 16
+text = "Hard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkinSelect" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -140.0
+offset_right = 176.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="Left" type="Button" parent="SkinSelect"]
+layout_mode = 2
+icon = ExtResource("9_6qmhv")
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="SkinSelect"]
+layout_mode = 2
+texture = ExtResource("2_em8sk")
+
+[node name="Right" type="Button" parent="SkinSelect"]
+layout_mode = 2
+icon = ExtResource("10_4tru4")
+icon_alignment = 1
+
+[connection signal="button_down" from="Difficulties/Easy" to="." method="_on_easy_button_down"]
+[connection signal="button_down" from="Difficulties/Medium" to="." method="_on_medium_button_down"]
+[connection signal="button_down" from="Difficulties/Hard" to="." method="_on_hard_button_down"]
+[connection signal="button_down" from="SkinSelect/Left" to="." method="_on_left_button_down"]
+[connection signal="button_down" from="SkinSelect/Right" to="." method="_on_right_button_down"]

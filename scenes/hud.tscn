@@ -1,0 +1,185 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5fg0psexxw7y"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_y02x1"]
+[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/PixeloidSansBold-PKnYd.ttf" id="2_q3ufa"]
+[ext_resource type="Texture2D" uid="uid://dk01hh57430ue" path="res://assets/play.png" id="3_kbmt3"]
+[ext_resource type="Texture2D" uid="uid://c5j2i6ffjkf42" path="res://assets/quit.png" id="4_bf47f"]
+[ext_resource type="Texture2D" uid="uid://bqqf6rxo01jtb" path="res://assets/p1.png" id="5_pb4he"]
+[ext_resource type="Texture2D" uid="uid://d2k0iyuiemtcr" path="res://assets/p2.png" id="6_jbp87"]
+[ext_resource type="PackedScene" uid="uid://d2dqeu2i1mjuv" path="res://scenes/skin_selector.tscn" id="7_ol5kb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1hslu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt5d3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utphu"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_y02x1")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 157.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 128
+text = "Pong"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InGame" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player1Score" type="Label" parent="InGame"]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 184.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player2Score" type="Label" parent="InGame"]
+layout_mode = 0
+offset_left = 472.0
+offset_right = 528.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="InGame"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 124.0
+offset_top = 96.0
+offset_right = 476.0
+offset_bottom = 126.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 24
+text = "Press Space to serve!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -65.0
+offset_right = 63.5
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PlayText" type="Label" parent="MainMenu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="MainMenu"]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.525101, 0.525101, 0.525101, 1)
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1hslu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gt5d3")
+icon = ExtResource("3_kbmt3")
+icon_alignment = 1
+
+[node name="QuitText" type="Label" parent="MainMenu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="MainMenu"]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.52549, 0.52549, 0.52549, 1)
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_utphu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_utphu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_utphu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_utphu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_utphu")
+icon = ExtResource("4_bf47f")
+icon_alignment = 1
+
+[node name="NumPlayers" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -80.0
+offset_right = 196.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P1Text" type="Label" parent="NumPlayers"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 64
+text = "1 Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P1" type="Button" parent="NumPlayers"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 48
+icon = ExtResource("5_pb4he")
+icon_alignment = 1
+
+[node name="P2Text" type="Label" parent="NumPlayers"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 64
+text = "2 Players"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P2" type="Button" parent="NumPlayers"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_font_sizes/font_size = 48
+icon = ExtResource("6_jbp87")
+icon_alignment = 1
+
+[node name="SkinSelector" parent="." instance=ExtResource("7_ol5kb")]
+visible = false
+
+[connection signal="button_down" from="MainMenu/Play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="MainMenu/Quit" to="." method="_on_quit_button_down"]
+[connection signal="button_down" from="NumPlayers/P1" to="." method="_on_p_1_button_down"]
+[connection signal="button_down" from="NumPlayers/P2" to="." method="_on_p_2_button_down"]
+[connection signal="start" from="SkinSelector" to="." method="_on_skin_selector_start"]
