@@ -32,6 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InGame" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -182,4 +183,4 @@ visible = false
 [connection signal="button_down" from="MainMenu/Quit" to="." method="_on_quit_button_down"]
 [connection signal="button_down" from="NumPlayers/P1" to="." method="_on_p_1_button_down"]
 [connection signal="button_down" from="NumPlayers/P2" to="." method="_on_p_2_button_down"]
-[connection signal="start" from="SkinSelector" to="." method="_on_skin_selector_start"]
+[connection signal="done" from="SkinSelector" to="." method="_on_skin_selector_start"]

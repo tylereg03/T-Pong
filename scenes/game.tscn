@@ -22,3 +22,4 @@ visible = false
 
 [connection signal="start_game" from="HUD" to="." method="_new_game"]
 [connection signal="end" from="PauseMenu" to="." method="_on_pause_menu_end"]
+[connection signal="end" from="PauseMenu" to="." method="game_over"]
