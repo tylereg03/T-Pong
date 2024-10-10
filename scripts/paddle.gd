@@ -47,5 +47,5 @@ func _physics_process(delta):
 	position.y = clamp(position.y, size.y / 2, screen_size.y - size.y / 2)
 
 # Called when an area (the ball) hits the paddle
-func _on_area_entered(area):
+func _on_area_entered(_area):
 	hit.emit()
