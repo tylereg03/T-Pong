@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce37wn7uba7ih"]
+
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="1_bw3gu"]
+[ext_resource type="PackedScene" uid="uid://d1xtxeko35ktv" path="res://scenes/menu.tscn" id="2_6vfeh"]
+[ext_resource type="PackedScene" uid="uid://c0otp2beh8vab" path="res://scenes/game.tscn" id="3_qhfql"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_bw3gu")
+
+[node name="BlackBackground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Menu" parent="." instance=ExtResource("2_6vfeh")]
+visible = false
+
+[node name="Game" parent="." instance=ExtResource("3_qhfql")]
+visible = false
+
+[connection signal="game_start" from="Menu" to="." method="_on_hud_game_start"]
+[connection signal="game_end" from="Game" to="." method="_on_game_game_end"]
