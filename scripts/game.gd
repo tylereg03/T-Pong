@@ -1,10 +1,19 @@
-extends Node
+extends Node2D
+
+enum GameplayState {
+	PAUSED,
+	WIN
+}
+
+signal game_end
+
+var current_state
 
 @export var paddle_scene = preload("res://scenes/paddle.tscn")
 @export var ball_scene = preload("res://scenes/ball.tscn")
 
-@onready var p1_score_text = $HUD/InGame/Player1Score
-@onready var p2_score_text = $HUD/InGame/Player2Score
+@onready var p1_score_text = $HUD/Player1Score
+@onready var p2_score_text = $HUD/Player2Score
 
 const MAX_SCORE = 7
 const MAX_SPEED = 600
@@ -14,6 +23,8 @@ const P1_BEHAVIOR = Paddle.Behavior.PLAYER
 var p1_score = 0
 var p2_score = 0
 var ball_direction = 1
+
+# eventually we can update the state machine to not require this
 var game_underway = false
 
 var ball
@@ -26,6 +37,15 @@ var screen_size
 func _ready():
 	screen_size = get_viewport().size
 
+func set_state(new_state):
+	current_state = new_state
+	match current_state:
+		GameplayState.PAUSED:
+			get_tree().paused = true
+			$PauseMenu.show()
+		GameplayState.WIN:
+			game_end.emit()
+
 # Called to instantiate any scene passed into it
 func inst(scene):
 	var instance = scene.instantiate()
@@ -33,7 +53,7 @@ func inst(scene):
 	return instance
 
 # Called whenever a new game has been started
-func _new_game(behavior, p1_sprite, p2_sprite):
+func new_game(behavior, p1_sprite, p2_sprite):
 	game_underway = true
 	
 	var p1_paddle_spawn = Vector2(64, 64)
@@ -46,7 +66,8 @@ func _new_game(behavior, p1_sprite, p2_sprite):
 	setup_paddle(p1_paddle, p1_paddle_spawn, P1_BEHAVIOR, p1_sprite, "move_up", "move_down")
 	setup_paddle(p2_paddle, p2_paddle_spawn, behavior, p2_sprite, "move_up_2", "move_down_2")
 	
-	$HUD/InGame/Message.show()
+	$HUD.show()
+	$HUD/Message.show()
 
 # Instantiates all objects necessary for pong to work
 func instantiate_game_objects():
@@ -84,7 +105,7 @@ func _on_paddle_hit():
 
 # Called whenever the ball has exited the screen on the left or right
 func _on_score():
-	$HUD/InGame/Message.show()
+	$HUD/Message.show()
 	
 	if ball.velocity.x > 0:
 		p1_score = update_score(p1_score + 1, p1_score_text)
@@ -116,7 +137,7 @@ func is_winner():
 # Called by ball whenever space is pressed to serve the ball
 func _server():
 	ball.velocity.x = ball_direction
-	$HUD/InGame/Message.hide()
+	$HUD/Message.hide()
 
 # Called whenever either player has won
 func game_over():
@@ -125,9 +146,8 @@ func game_over():
 	
 	p1_score = update_score(0, p1_score_text)
 	p2_score = update_score(0, p2_score_text)
-	$HUD/InGame.hide()
-	$HUD/Title.show()
-	$HUD/MainMenu.show()
+	$HUD.hide()
+	set_state(GameplayState.WIN)
 
 # Called to delete no longer used game objects
 func clear_game_objects():
@@ -143,5 +163,4 @@ func clear_game_objects():
 # Checks for any inputs
 func _input(event):
 	if event.is_action_pressed("esc") and game_underway:
-		get_tree().paused = true
-		$PauseMenu.show()
+		set_state(GameplayState.PAUSED)
