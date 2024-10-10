@@ -1,13 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2dqeu2i1mjuv"]
+[gd_scene load_steps=22 format=3 uid="uid://d2dqeu2i1mjuv"]
 
 [ext_resource type="Script" path="res://scripts/skin_selector.gd" id="1_vjtsq"]
 [ext_resource type="Texture2D" uid="uid://bvmwncpj846br" path="res://assets/paddle.png" id="2_em8sk"]
 [ext_resource type="Texture2D" uid="uid://db51ix2ooxq61" path="res://assets/paddle_m.png" id="3_npq22"]
 [ext_resource type="Texture2D" uid="uid://cjbiuvquk0b6u" path="res://assets/paddle_h.png" id="4_3gn6x"]
 [ext_resource type="Texture2D" uid="uid://bimf65m0nekf5" path="res://assets/easy.png" id="5_sinys"]
+[ext_resource type="Texture2D" uid="uid://ckr6jxakhvebs" path="res://assets/paddle_water.png" id="5_u56yb"]
+[ext_resource type="Texture2D" uid="uid://b5x15dl47ghnf" path="res://assets/paddle_poison.png" id="6_4cm0u"]
 [ext_resource type="Texture2D" uid="uid://px7uf6mlpxwy" path="res://assets/medium.png" id="6_hrec4"]
 [ext_resource type="ButtonGroup" uid="uid://b7c6xl3tetsd2" path="res://resources/difficulty_buttons.tres" id="6_ylim5"]
+[ext_resource type="Texture2D" uid="uid://d2l4pt1wr1nxs" path="res://assets/paddle_princess.png" id="7_dn7cw"]
 [ext_resource type="Texture2D" uid="uid://boxlncp5cuq7d" path="res://assets/hard.png" id="7_qup8o"]
+[ext_resource type="Texture2D" uid="uid://dqs6ki3ytbu3" path="res://assets/paddle_demon.png" id="8_0pw4t"]
 [ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/PixeloidSansBold-PKnYd.ttf" id="8_dj512"]
 [ext_resource type="Texture2D" uid="uid://bgxw52jxxmr24" path="res://assets/left.png" id="9_6qmhv"]
 [ext_resource type="Texture2D" uid="uid://csyji8dmai531" path="res://assets/right.png" id="10_4tru4"]
@@ -41,7 +45,7 @@ corner_radius_bottom_left = 4
 
 [node name="SkinSelector" type="CanvasLayer"]
 script = ExtResource("1_vjtsq")
-textures = Array[Texture2D]([ExtResource("2_em8sk"), ExtResource("3_npq22"), ExtResource("4_3gn6x")])
+textures = Array[Texture2D]([ExtResource("2_em8sk"), ExtResource("3_npq22"), ExtResource("4_3gn6x"), ExtResource("5_u56yb"), ExtResource("6_4cm0u"), ExtResource("7_dn7cw"), ExtResource("8_0pw4t")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
