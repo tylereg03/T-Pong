@@ -21,11 +21,11 @@ func set_state(new_state):
 	curr_state = new_state
 	match curr_state:
 		MasterState.MENU:
-			print("IN MENU")
+			print("StateMachine: In MENU")
 			menu_state_machine.show()
 			gameplay_state_machine.hide()
 		MasterState.PLAYING:
-			print("IN PLAYING")
+			print("StateMachine: In PLAYING")
 			menu_state_machine.hide()
 			gameplay_state_machine.show()
 

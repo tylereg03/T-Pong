@@ -29,20 +29,20 @@ func set_state(new_state):
 	curr_state = new_state
 	match curr_state:
 		MenuState.MAIN_MENU:
-			print("main menu active")
+			print("MenuState: In MAIN_MENU")
 			$NumPlayers.hide()
 			$MainMenu.show()
 		MenuState.PLAYER_SELECT:
-			print("player select active")
+			print("MenuState: In PLAYER_SELECT")
 			$MainMenu.hide()
 			$SkinSelector.hide()
 			$NumPlayers.show()
 		MenuState.SKIN_SELECT:
-			print("skin select active")
+			print("MenuState: In SKIN_SELECT")
 			$NumPlayers.hide()
 			$SkinSelector.show()
 		MenuState.GAME_START:
-			print("game start active")
+			print("MenuState: In GAME_START")
 			$SkinSelector.hide()
 			game_start.emit(behavior, p1_sprite, p2_sprite)
 
