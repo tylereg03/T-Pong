@@ -20,8 +20,10 @@ func _physics_process(delta):
 	
 	# bounces off the top or bottom wall
 	if position.y >= screen_size.y - size.y / 2 or position.y <= size.y / 2:
+		$WallHit.play()
 		velocity.y *= -1
 	
 	# passes the paddle and leaves through the left or right
 	if position.x <= -size.x / 2 or position.x >= screen_size.x - size.x / 2:
+		$Score.play()
 		score.emit()

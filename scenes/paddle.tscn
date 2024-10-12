@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://3redrrrcwpw6"]
+[gd_scene load_steps=5 format=3 uid="uid://3redrrrcwpw6"]
 
 [ext_resource type="Script" path="res://scripts/paddle.gd" id="1_5xi2m"]
-[ext_resource type="Texture2D" uid="uid://bvmwncpj846br" path="res://assets/paddle.png" id="2_vp2pn"]
+[ext_resource type="Texture2D" uid="uid://bvmwncpj846br" path="res://assets/paddles/paddle.png" id="2_6nuqp"]
+[ext_resource type="AudioStream" uid="uid://7ern824o54ip" path="res://assets/audio/paddle_hit.wav" id="3_jkvdi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_784xp"]
 size = Vector2(8, 64)
@@ -10,9 +11,12 @@ size = Vector2(8, 64)
 script = ExtResource("1_5xi2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_vp2pn")
+texture = ExtResource("2_6nuqp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_784xp")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jkvdi")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

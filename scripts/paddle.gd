@@ -48,4 +48,5 @@ func _physics_process(delta):
 
 # Called when an area (the ball) hits the paddle
 func _on_area_entered(_area):
+	$Hit.play()
 	hit.emit()

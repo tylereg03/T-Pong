@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5fg0psexxw7y"]
 
-[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/PixeloidSansBold-PKnYd.ttf" id="2_q3ufa"]
+[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/fonts/PixeloidSansBold-PKnYd.ttf" id="1_tp0gx"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -8,7 +8,7 @@
 offset_left = 128.0
 offset_right = 184.0
 offset_bottom = 88.0
-theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_fonts/font = ExtResource("1_tp0gx")
 theme_override_font_sizes/font_size = 72
 text = "0"
 horizontal_alignment = 1
@@ -18,7 +18,7 @@ vertical_alignment = 1
 offset_left = 472.0
 offset_right = 528.0
 offset_bottom = 88.0
-theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_fonts/font = ExtResource("1_tp0gx")
 theme_override_font_sizes/font_size = 72
 text = "0"
 horizontal_alignment = 1
@@ -33,7 +33,7 @@ offset_top = 96.0
 offset_right = 176.0
 offset_bottom = 126.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_fonts/font = ExtResource("1_tp0gx")
 theme_override_font_sizes/font_size = 24
 text = "Press Space to serve!"
 horizontal_alignment = 1
@@ -52,7 +52,7 @@ offset_right = 260.5
 offset_bottom = 80.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_q3ufa")
+theme_override_fonts/font = ExtResource("1_tp0gx")
 theme_override_font_sizes/font_size = 64
 text = "WinMessage"
 horizontal_alignment = 1

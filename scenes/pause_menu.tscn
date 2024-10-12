@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jxyy6w5q4h5c"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_k447w"]
-[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/PixeloidSansBold-PKnYd.ttf" id="2_bo2q8"]
+[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/fonts/PixeloidSansBold-PKnYd.ttf" id="2_3r3y0"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
@@ -23,7 +23,7 @@ offset_left = -200.0
 offset_right = 200.0
 offset_bottom = 157.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_bo2q8")
+theme_override_fonts/font = ExtResource("2_3r3y0")
 theme_override_font_sizes/font_size = 72
 text = "Pause"
 horizontal_alignment = 1
@@ -41,7 +41,7 @@ offset_right = 136.5
 offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_bo2q8")
+theme_override_fonts/font = ExtResource("2_3r3y0")
 theme_override_font_sizes/font_size = 48
 text = "Continue"
 
@@ -57,7 +57,7 @@ offset_right = 136.5
 offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_bo2q8")
+theme_override_fonts/font = ExtResource("2_3r3y0")
 theme_override_font_sizes/font_size = 48
 text = "Quit"
 

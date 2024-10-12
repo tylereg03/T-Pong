@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0otp2beh8vab"]
+[gd_scene load_steps=5 format=3 uid="uid://c0otp2beh8vab"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t32nk"]
 [ext_resource type="PackedScene" uid="uid://c5fg0psexxw7y" path="res://scenes/hud.tscn" id="2_xdfsf"]
 [ext_resource type="PackedScene" uid="uid://jxyy6w5q4h5c" path="res://scenes/pause_menu.tscn" id="3_0cvnc"]
+[ext_resource type="AudioStream" uid="uid://bs8b0ea4ohb43" path="res://assets/audio/win.wav" id="4_nxph1"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_t32nk")
@@ -12,5 +13,8 @@ visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_0cvnc")]
 visible = false
+
+[node name="Win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nxph1")
 
 [connection signal="end" from="PauseMenu" to="." method="game_over"]

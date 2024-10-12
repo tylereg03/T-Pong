@@ -1,11 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1xtxeko35ktv"]
+[gd_scene load_steps=15 format=3 uid="uid://d1xtxeko35ktv"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_cte1e"]
-[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/PixeloidSansBold-PKnYd.ttf" id="2_c0vxm"]
-[ext_resource type="Texture2D" uid="uid://dk01hh57430ue" path="res://assets/play.png" id="3_yti8b"]
-[ext_resource type="Texture2D" uid="uid://c5j2i6ffjkf42" path="res://assets/quit.png" id="4_iu0wj"]
-[ext_resource type="Texture2D" uid="uid://bqqf6rxo01jtb" path="res://assets/p1.png" id="5_me2b3"]
-[ext_resource type="Texture2D" uid="uid://d2k0iyuiemtcr" path="res://assets/p2.png" id="6_aiu6a"]
+[ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/fonts/PixeloidSansBold-PKnYd.ttf" id="2_tx6k8"]
+[ext_resource type="Texture2D" uid="uid://dk01hh57430ue" path="res://assets/icons/play.png" id="3_12gyf"]
+[ext_resource type="Texture2D" uid="uid://xvcjobx0wlxs" path="res://assets/icons/options.png" id="3_qld1c"]
+[ext_resource type="Texture2D" uid="uid://dgphg36xj5tik" path="res://assets/icons/achievements.png" id="4_7bftu"]
+[ext_resource type="Texture2D" uid="uid://c5j2i6ffjkf42" path="res://assets/icons/quit.png" id="4_8dq0k"]
+[ext_resource type="Texture2D" uid="uid://b7piba8e63j0d" path="res://assets/icons/stats.png" id="5_emtp5"]
+[ext_resource type="Texture2D" uid="uid://bqqf6rxo01jtb" path="res://assets/icons/p1.png" id="5_qykyl"]
+[ext_resource type="Texture2D" uid="uid://d2k0iyuiemtcr" path="res://assets/icons/p2.png" id="6_fypak"]
+[ext_resource type="Texture2D" uid="uid://bg3yid5sfyyuw" path="res://assets/icons/credits.png" id="6_jtanj"]
 [ext_resource type="PackedScene" uid="uid://d2dqeu2i1mjuv" path="res://scenes/skin_selector.tscn" id="7_g5plu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1hslu"]
@@ -33,67 +37,178 @@ offset_left = -200.0
 offset_right = 200.0
 offset_bottom = 157.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_c0vxm")
-theme_override_font_sizes/font_size = 128
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 96
 text = "Pong"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -63.5
-offset_top = -65.0
-offset_right = 63.5
-offset_bottom = 193.0
+offset_left = -255.5
+offset_top = -80.0
+offset_right = 255.5
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="TopRow" type="HBoxContainer" parent="MainMenu"]
+layout_mode = 2
+theme_override_constants/separation = 48
 alignment = 1
 
-[node name="PlayText" type="Label" parent="MainMenu"]
+[node name="Play" type="VBoxContainer" parent="MainMenu/TopRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_c0vxm")
-theme_override_font_sizes/font_size = 64
+alignment = 1
+
+[node name="PlayText" type="Label" parent="MainMenu/TopRow/Play"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 32
 text = "Play"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Play" type="Button" parent="MainMenu"]
+[node name="Play" type="Button" parent="MainMenu/TopRow/Play"]
 layout_mode = 2
 theme_override_colors/icon_hover_color = Color(0.525101, 0.525101, 0.525101, 1)
-theme_override_fonts/font = ExtResource("2_c0vxm")
+theme_override_fonts/font = ExtResource("2_tx6k8")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1hslu")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_gt5d3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_gt5d3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_gt5d3")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gt5d3")
-icon = ExtResource("3_yti8b")
+icon = ExtResource("3_12gyf")
 icon_alignment = 1
 
-[node name="QuitText" type="Label" parent="MainMenu"]
+[node name="Achievements" type="VBoxContainer" parent="MainMenu/TopRow"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_c0vxm")
-theme_override_font_sizes/font_size = 64
+
+[node name="AchievementsText" type="Label" parent="MainMenu/TopRow/Achievements"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 32
+text = "Achievements"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Achievements" type="Button" parent="MainMenu/TopRow/Achievements"]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.525101, 0.525101, 0.525101, 1)
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1hslu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gt5d3")
+icon = ExtResource("4_7bftu")
+icon_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="MainMenu/TopRow"]
+layout_mode = 2
+
+[node name="StatsText" type="Label" parent="MainMenu/TopRow/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 32
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Button" parent="MainMenu/TopRow/Stats"]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.525101, 0.525101, 0.525101, 1)
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1hslu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gt5d3")
+icon = ExtResource("5_emtp5")
+icon_alignment = 1
+
+[node name="BottomRow" type="HBoxContainer" parent="MainMenu"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Options" type="VBoxContainer" parent="MainMenu/BottomRow"]
+layout_mode = 2
+
+[node name="OptionsText" type="Label" parent="MainMenu/BottomRow/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="Button" parent="MainMenu/BottomRow/Options"]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.525101, 0.525101, 0.525101, 1)
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1hslu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gt5d3")
+icon = ExtResource("3_qld1c")
+icon_alignment = 1
+
+[node name="Quit" type="VBoxContainer" parent="MainMenu/BottomRow"]
+layout_mode = 2
+
+[node name="QuitText" type="Label" parent="MainMenu/BottomRow/Quit"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 32
 text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="Button" parent="MainMenu"]
+[node name="Quit" type="Button" parent="MainMenu/BottomRow/Quit"]
 layout_mode = 2
 theme_override_colors/icon_hover_color = Color(0.52549, 0.52549, 0.52549, 1)
-theme_override_fonts/font = ExtResource("2_c0vxm")
+theme_override_fonts/font = ExtResource("2_tx6k8")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_utphu")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_utphu")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_utphu")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_utphu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_utphu")
-icon = ExtResource("4_iu0wj")
+icon = ExtResource("4_8dq0k")
+icon_alignment = 1
+
+[node name="Credits" type="VBoxContainer" parent="MainMenu/BottomRow"]
+layout_mode = 2
+
+[node name="CreditsText" type="Label" parent="MainMenu/BottomRow/Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Button" parent="MainMenu/BottomRow/Credits"]
+layout_mode = 2
+theme_override_colors/icon_hover_color = Color(0.525101, 0.525101, 0.525101, 1)
+theme_override_fonts/font = ExtResource("2_tx6k8")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1hslu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gt5d3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gt5d3")
+icon = ExtResource("6_jtanj")
 icon_alignment = 1
 
 [node name="NumPlayers" type="VBoxContainer" parent="."]
@@ -112,7 +227,7 @@ grow_vertical = 2
 
 [node name="P1Text" type="Label" parent="NumPlayers"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_c0vxm")
+theme_override_fonts/font = ExtResource("2_tx6k8")
 theme_override_font_sizes/font_size = 64
 text = "1 Player"
 horizontal_alignment = 1
@@ -120,14 +235,14 @@ vertical_alignment = 1
 
 [node name="P1" type="Button" parent="NumPlayers"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_c0vxm")
+theme_override_fonts/font = ExtResource("2_tx6k8")
 theme_override_font_sizes/font_size = 48
-icon = ExtResource("5_me2b3")
+icon = ExtResource("5_qykyl")
 icon_alignment = 1
 
 [node name="P2Text" type="Label" parent="NumPlayers"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_c0vxm")
+theme_override_fonts/font = ExtResource("2_tx6k8")
 theme_override_font_sizes/font_size = 64
 text = "2 Players"
 horizontal_alignment = 1
@@ -135,16 +250,16 @@ vertical_alignment = 1
 
 [node name="P2" type="Button" parent="NumPlayers"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_c0vxm")
+theme_override_fonts/font = ExtResource("2_tx6k8")
 theme_override_font_sizes/font_size = 48
-icon = ExtResource("6_aiu6a")
+icon = ExtResource("6_fypak")
 icon_alignment = 1
 
 [node name="SkinSelector" parent="." instance=ExtResource("7_g5plu")]
 visible = false
 
-[connection signal="pressed" from="MainMenu/Play" to="." method="_on_play_pressed"]
-[connection signal="button_down" from="MainMenu/Quit" to="." method="_on_quit_button_down"]
+[connection signal="pressed" from="MainMenu/TopRow/Play/Play" to="." method="_on_play_pressed"]
+[connection signal="button_down" from="MainMenu/BottomRow/Quit/Quit" to="." method="_on_quit_button_down"]
 [connection signal="button_down" from="NumPlayers/P1" to="." method="_on_p_1_button_down"]
 [connection signal="button_down" from="NumPlayers/P2" to="." method="_on_p_2_button_down"]
 [connection signal="done" from="SkinSelector" to="." method="_on_skin_selector_start"]

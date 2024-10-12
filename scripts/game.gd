@@ -153,6 +153,8 @@ func win_screen():
 	win = true
 	clear_game_objects()
 	
+	$Win.play()
+	
 	if p1_score == 7:
 		$HUD/WinMessage.text = "Player 1 wins! \n Press Space"
 	else:

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2stk0sqyy3h5"]
+[gd_scene load_steps=6 format=3 uid="uid://b2stk0sqyy3h5"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_15b12"]
-[ext_resource type="Texture2D" uid="uid://dv2xksl57gmh6" path="res://assets/ball.png" id="2_ltky0"]
+[ext_resource type="Texture2D" uid="uid://dv2xksl57gmh6" path="res://assets/balls/ball.png" id="2_qhfix"]
+[ext_resource type="AudioStream" uid="uid://ddpbwv3wju513" path="res://assets/audio/wall_hit.wav" id="3_po522"]
+[ext_resource type="AudioStream" uid="uid://diy5wxo2tixj2" path="res://assets/audio/score.wav" id="4_t6lnh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lavu"]
 size = Vector2(8, 8)
@@ -10,9 +12,15 @@ size = Vector2(8, 8)
 script = ExtResource("1_15b12")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ltky0")
+texture = ExtResource("2_qhfix")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5lavu")
+
+[node name="WallHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_po522")
+
+[node name="Score" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_t6lnh")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
