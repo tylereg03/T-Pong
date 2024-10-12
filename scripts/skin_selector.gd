@@ -5,9 +5,9 @@ signal done
 @export var textures: Array[Texture2D]
 
 # stores the index assigned to each sprite used for each difficulty
-@onready var easy_sprite = 0
-@onready var med_sprite = 1
-@onready var hard_sprite = 2
+@onready var easy_sprite = 1
+@onready var med_sprite = 2
+@onready var hard_sprite = 3
 
 # stores what texture the users are currently hovering
 var p1_current_texture_index: int = 0

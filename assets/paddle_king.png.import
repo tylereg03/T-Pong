@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca0lh044cxn8a"
-path="res://.godot/imported/paddle_demon.png-8115c0bae4838bf8b7683b226714dd9c.ctex"
+uid="uid://b4uw1fddo454"
+path="res://.godot/imported/paddle_king.png-63e49f2552e85c9c88400862cb87962b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/paddle_demon.png"
-dest_files=["res://.godot/imported/paddle_demon.png-8115c0bae4838bf8b7683b226714dd9c.ctex"]
+source_file="res://assets/paddle_king.png"
+dest_files=["res://.godot/imported/paddle_king.png-63e49f2552e85c9c88400862cb87962b.ctex"]
 
 [params]
 
