@@ -1,9 +1,11 @@
 extends CanvasLayer
 
+signal unpause
 signal end
 
 # simply unpause the game
 func _on_continue_button_down():
+	unpause.emit()
 	get_tree().paused = false
 	hide()
 

@@ -18,3 +18,4 @@ visible = false
 stream = ExtResource("4_nxph1")
 
 [connection signal="end" from="PauseMenu" to="." method="game_over"]
+[connection signal="unpause" from="PauseMenu" to="." method="_on_pause_menu_unpause"]

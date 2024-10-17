@@ -6,8 +6,7 @@ class_name Menu
 enum MenuState {
 	MAIN_MENU,
 	PLAYER_SELECT,
-	SKIN_SELECT,
-	GAME_START
+	SKIN_SELECT
 }
 
 
@@ -41,10 +40,6 @@ func set_state(new_state):
 			print("MenuState: In SKIN_SELECT")
 			$NumPlayers.hide()
 			$SkinSelector.show()
-		MenuState.GAME_START:
-			print("MenuState: In GAME_START")
-			$SkinSelector.hide()
-			game_start.emit(behavior, p1_sprite, p2_sprite)
 
 # Play Button in Main Menu pressed
 func _on_play_pressed():
@@ -63,6 +58,7 @@ func _on_p_1_button_down():
 	$SkinSelector/SkinSelect2.hide()
 	
 	# have easy automatically toggled to true
+	$SkinSelector/Difficulties/Easy.button_pressed = true
 	$SkinSelector._on_easy_toggled(true)
 	
 	set_state(MenuState.SKIN_SELECT)
@@ -75,8 +71,6 @@ func _on_p_2_button_down():
 	$SkinSelector/DifficultiesTexts.hide()
 	$SkinSelector/SkinSelect2.show()
 	
-	# toggle easy to false if 2 players are selected
-	$SkinSelector._on_easy_toggled(false)
 	$SkinSelector.behavior = Paddle.Behavior.PLAYER
 	
 	set_state(MenuState.SKIN_SELECT)
@@ -88,7 +82,8 @@ func _on_skin_selector_start():
 	p1_sprite = $SkinSelector.p1_sprite
 	p2_sprite = $SkinSelector.p2_sprite
 	
-	set_state(MenuState.GAME_START)
+	$SkinSelector.hide()
+	game_start.emit(behavior, p1_sprite, p2_sprite)
 
 # This keeps track of which hud element is currently visible, in order to
 # have "esc" either backtrack, or quit the game
@@ -101,5 +96,3 @@ func _input(event):
 				set_state(MenuState.MAIN_MENU)
 			MenuState.SKIN_SELECT:
 				set_state(MenuState.PLAYER_SELECT)
-			MenuState.GAME_START:
-				pass

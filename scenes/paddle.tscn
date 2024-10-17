@@ -19,4 +19,7 @@ shape = SubResource("RectangleShape2D_784xp")
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_jkvdi")
 
+[node name="ReactionTime" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -5,8 +5,8 @@ class_name Game
 enum GameplayState {
 	IDLE,
 	PLAYING,
-	WIN,
-	END
+	PAUSED,
+	WIN
 }
 
 signal game_end
@@ -25,7 +25,6 @@ const P1_BEHAVIOR = Paddle.Behavior.PLAYER
 var p1_score = 0
 var p2_score = 0
 var ball_direction = 1
-var win = false
 
 
 var ball
@@ -43,12 +42,13 @@ func set_state(new_state):
 		GameplayState.PLAYING:
 			print("GameplayState: In PLAYING")
 			serve()
+		GameplayState.PAUSED:
+			print("GameplayState: In PAUSED")
+			get_tree().paused = true
+			$PauseMenu.show()
 		GameplayState.WIN:
 			print("GameplayState: In WIN")
 			win_screen()
-		GameplayState.END:
-			print("GameplayState: In END")
-			game_over()
 
 
 # Called to instantiate any scene passed into it
@@ -113,7 +113,7 @@ func _on_paddle_hit():
 	ball.velocity.x *= -1
 	ball.velocity.y += randf_range(-0.5, 0.5)
 	ball.velocity.normalized()
-	ball.speed += 5
+	ball.speed += 10
 	ball.speed = clamp(ball.speed, MIN_SPEED, MAX_SPEED)
 
 
@@ -150,8 +150,7 @@ func is_winner():
 
 
 func win_screen():
-	win = true
-	clear_game_objects()
+	hide_game_objects()
 	
 	$Win.play()
 	
@@ -165,17 +164,19 @@ func win_screen():
 
 # Called when the game has ended either by a quit or a win
 func game_over():
-	if not win:
-		clear_game_objects()
+	clear_game_objects()
 	
 	p1_score = update_score(0, p1_score_text)
 	p2_score = update_score(0, p2_score_text)
 	$HUD.hide()
 	$HUD/WinMessage.hide()
 	
-	win = false
-	
 	game_end.emit()
+
+func hide_game_objects():
+	p1_paddle.hide()
+	p2_paddle.hide()
+	ball.hide()
 
 # Called to delete no longer used game objects
 func clear_game_objects():
@@ -188,13 +189,16 @@ func clear_game_objects():
 	ball.queue_free()
 
 
+# create function to set state back to playing
+func _on_pause_menu_unpause():
+	set_state(GameplayState.PLAYING)
+	
 # Checks for any inputs
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.is_action_pressed("space") and curr_state == GameplayState.IDLE:
 			set_state(GameplayState.PLAYING)
 		elif event.is_action_pressed("space") and curr_state == GameplayState.WIN:
-			set_state(GameplayState.END)
+			game_over()
 		elif event.is_action_pressed("esc") and (curr_state == GameplayState.PLAYING or curr_state == GameplayState.IDLE):
-			get_tree().paused = true
-			$PauseMenu.show()
+			set_state(GameplayState.PAUSED)
