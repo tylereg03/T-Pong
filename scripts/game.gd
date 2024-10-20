@@ -16,7 +16,6 @@ signal game_end
 
 @onready var p1_score_text = $HUD/Player1Score
 @onready var p2_score_text = $HUD/Player2Score
-@onready var screen_size = get_viewport().size
 
 const MAX_SCORE = 7
 const MAX_SPEED = 600
@@ -32,7 +31,13 @@ var p1_paddle
 var p2_paddle
 var ball_spawn
 var curr_state
+var screen_size
 
+func _ready():
+	update_screen_size()
+	
+func update_screen_size():
+	screen_size = get_viewport().get_visible_rect().size
 
 func set_state(new_state):
 	curr_state = new_state

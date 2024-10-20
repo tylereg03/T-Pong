@@ -4,10 +4,33 @@ signal done
 
 @export var textures: Array[Texture2D]
 
-# stores the index assigned to each sprite used for each difficulty
-@onready var easy_sprite = 1
-@onready var med_sprite = 2
-@onready var hard_sprite = 3
+enum AI_Sprites {
+	EASY, 
+	MEDIUM,
+	HARD,
+	WATER,
+	WOOD,
+	POISON,
+	PRINCESS,
+	CLOUD,
+	FIRE,
+	WIZARD,
+	SNAKE,
+	DEMON
+	}
+
+@onready var ai_sprites_index = {AI_Sprites.EASY: 1,
+								AI_Sprites.MEDIUM: 2,
+								AI_Sprites.HARD: 3,
+								AI_Sprites.WATER: 4,
+								AI_Sprites.WOOD: 5,
+								AI_Sprites.POISON: 6,
+								AI_Sprites.PRINCESS: 7,
+								AI_Sprites.CLOUD: 8,
+								AI_Sprites.FIRE: 9,
+								AI_Sprites.WIZARD: 10,
+								AI_Sprites.SNAKE: 11,
+								AI_Sprites.DEMON: 12}
 
 # stores what texture the users are currently hovering
 var p1_current_texture_index: int = 0
@@ -73,24 +96,39 @@ func _on_right_2_button_down():
 func _on_easy_toggled(toggled_on):
 	if toggled_on:
 		behavior = Paddle.Behavior.EASY
-		p2_current_texture_index = easy_sprite
+		p2_current_texture_index = ai_sprites_index[AI_Sprites.EASY]
 		update_texture()
 
 # ONLY ACCESSIBLE FOR 1 PLAYER, Medium button toggled
 func _on_medium_toggled(toggled_on):
 	if toggled_on:
 		behavior = Paddle.Behavior.MEDIUM
-		p2_current_texture_index = med_sprite
+		p2_current_texture_index = ai_sprites_index[AI_Sprites.MEDIUM]
 		update_texture()
 		
 # ONLY ACCESSIBLE FOR 1 PLAYER, Hard button toggled
 func _on_hard_toggled(toggled_on):
 	if toggled_on:
 		behavior = Paddle.Behavior.HARD
-		p2_current_texture_index = hard_sprite
+		p2_current_texture_index = ai_sprites_index[AI_Sprites.HARD]
+		update_texture()
+	
+func _on_fire_toggled(toggled_on):
+	if toggled_on:
+		behavior = Paddle.Behavior.HARD
+		p2_current_texture_index = ai_sprites_index[AI_Sprites.FIRE]
 		update_texture()
 	
 # Hides the skin selector, and alerts the hud that it has finished
 func finish():
+	$ToggleSpecialDifficulty.button_pressed = false
 	hide()
 	done.emit()
+
+func _on_toggle_special_difficulty_toggled(toggled_on):
+	if toggled_on:
+		$DifficultySelector.hide()
+		$SpecialDifficultySelector.show()
+	else:
+		$DifficultySelector.show()
+		$SpecialDifficultySelector.hide()

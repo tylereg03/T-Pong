@@ -33,9 +33,11 @@ func set_state(new_state):
 # Called when menu state is GAME_START
 func _on_hud_game_start(behavior, p1_sprite, p2_sprite):
 	gameplay_state_machine.new_game(behavior, p1_sprite, p2_sprite)
+	$Menu/MainMenuMusic.stop()
 	set_state(MasterState.PLAYING)
 
 
 func _on_game_game_end():
 	menu_state_machine.set_state(Menu.MenuState.MAIN_MENU)
+	$Menu/MainMenuMusic.play()
 	set_state(MasterState.MENU)

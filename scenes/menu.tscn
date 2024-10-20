@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1xtxeko35ktv"]
+[gd_scene load_steps=17 format=3 uid="uid://d1xtxeko35ktv"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_cte1e"]
 [ext_resource type="FontFile" uid="uid://crpfiq20c1khc" path="res://assets/fonts/PixeloidSansBold-PKnYd.ttf" id="2_tx6k8"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://d2k0iyuiemtcr" path="res://assets/icons/p2.png" id="6_fypak"]
 [ext_resource type="Texture2D" uid="uid://bg3yid5sfyyuw" path="res://assets/icons/credits.png" id="6_jtanj"]
 [ext_resource type="PackedScene" uid="uid://d2dqeu2i1mjuv" path="res://scenes/skin_selector.tscn" id="7_g5plu"]
+[ext_resource type="AudioStream" uid="uid://bbf4o7eymkvcx" path="res://assets/audio/main_menu(HAVETOCHANGE).mp3" id="12_3ackp"]
+[ext_resource type="AudioStream" uid="uid://ywmoel7mvusg" path="res://assets/audio/select.wav" id="13_p8o1b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1hslu"]
 
@@ -33,13 +35,13 @@ color = Color(0, 0, 0, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -200.0
-offset_right = 200.0
-offset_bottom = 157.0
+offset_left = -112.0
+offset_right = 112.0
+offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 96
-text = "Pong"
+theme_override_font_sizes/font_size = 72
+text = "T-Pong"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -49,13 +51,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -255.5
-offset_top = -80.0
-offset_right = 255.5
-offset_bottom = 200.0
+offset_left = -247.0
+offset_top = -60.0
+offset_right = 246.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 32
 
 [node name="TopRow" type="HBoxContainer" parent="MainMenu"]
 layout_mode = 2
@@ -69,7 +71,7 @@ alignment = 1
 [node name="PlayText" type="Label" parent="MainMenu/TopRow/Play"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Play"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -93,7 +95,7 @@ layout_mode = 2
 [node name="AchievementsText" type="Label" parent="MainMenu/TopRow/Achievements"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Achievements"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -117,7 +119,7 @@ layout_mode = 2
 [node name="StatsText" type="Label" parent="MainMenu/TopRow/Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -145,7 +147,7 @@ layout_mode = 2
 [node name="OptionsText" type="Label" parent="MainMenu/BottomRow/Options"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -169,7 +171,7 @@ layout_mode = 2
 [node name="QuitText" type="Label" parent="MainMenu/BottomRow/Quit"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -193,7 +195,7 @@ layout_mode = 2
 [node name="CreditsText" type="Label" parent="MainMenu/BottomRow/Credits"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -218,17 +220,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -196.0
+offset_left = -145.5
 offset_top = -80.0
-offset_right = 196.0
-offset_bottom = 234.0
+offset_right = 145.5
+offset_bottom = 194.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="P1Text" type="Label" parent="NumPlayers"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 36
 text = "1 Player"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -243,7 +245,7 @@ icon_alignment = 1
 [node name="P2Text" type="Label" parent="NumPlayers"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tx6k8")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 36
 text = "2 Players"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -257,6 +259,13 @@ icon_alignment = 1
 
 [node name="SkinSelector" parent="." instance=ExtResource("7_g5plu")]
 visible = false
+
+[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_3ackp")
+autoplay = true
+
+[node name="Select" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_p8o1b")
 
 [connection signal="pressed" from="MainMenu/TopRow/Play/Play" to="." method="_on_play_pressed"]
 [connection signal="button_down" from="MainMenu/BottomRow/Quit/Quit" to="." method="_on_quit_button_down"]

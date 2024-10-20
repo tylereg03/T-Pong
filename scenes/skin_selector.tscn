@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d2dqeu2i1mjuv"]
+[gd_scene load_steps=34 format=3 uid="uid://d2dqeu2i1mjuv"]
 
 [ext_resource type="Script" path="res://scripts/skin_selector.gd" id="1_vjtsq"]
 [ext_resource type="Texture2D" uid="uid://bvmwncpj846br" path="res://assets/paddles/paddle.png" id="2_tlgih"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bimf65m0nekf5" path="res://assets/difficulties/easy.png" id="22_qti4q"]
 [ext_resource type="Texture2D" uid="uid://px7uf6mlpxwy" path="res://assets/difficulties/medium.png" id="23_enl2v"]
 [ext_resource type="Texture2D" uid="uid://boxlncp5cuq7d" path="res://assets/difficulties/hard.png" id="24_3i47u"]
+[ext_resource type="Texture2D" uid="uid://djrufgj3nu1qp" path="res://assets/difficulties/fire.png" id="25_13b3i"]
 [ext_resource type="Texture2D" uid="uid://bgxw52jxxmr24" path="res://assets/icons/left.png" id="25_a8ap3"]
 [ext_resource type="Texture2D" uid="uid://csyji8dmai531" path="res://assets/icons/right.png" id="26_gtgd8"]
 
@@ -72,9 +73,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -66.5
+offset_left = -67.0
 offset_top = -30.0
-offset_right = 66.5
+offset_right = 66.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -82,20 +83,81 @@ theme_override_fonts/font = ExtResource("20_mepys")
 theme_override_font_sizes/font_size = 32
 text = "START"
 
-[node name="Difficulties" type="HBoxContainer" parent="."]
+[node name="ToggleSpecialDifficulty" type="CheckButton" parent="."]
+offset_left = 426.0
+offset_top = 150.0
+offset_right = 470.0
+offset_bottom = 174.0
+rotation = 1.5708
+
+[node name="DifficultySelector" type="Control" parent="."]
 visible = false
-anchors_preset = 14
-anchor_top = 0.5
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DifficultiesTexts" type="HBoxContainer" parent="DifficultySelector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 90.0
-offset_bottom = 162.0
+offset_left = -191.5
+offset_top = -120.0
+offset_right = 191.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 90
+alignment = 1
+
+[node name="EasyText" type="Label" parent="DifficultySelector/DifficultiesTexts"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("20_mepys")
+theme_override_font_sizes/font_size = 16
+text = "Easy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MediumText" type="Label" parent="DifficultySelector/DifficultiesTexts"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("20_mepys")
+theme_override_font_sizes/font_size = 16
+text = "Medium"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HardText" type="Label" parent="DifficultySelector/DifficultiesTexts"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("20_mepys")
+theme_override_font_sizes/font_size = 16
+text = "Hard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Difficulties" type="HBoxContainer" parent="DifficultySelector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -80.0
+offset_right = 188.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="Easy" type="Button" parent="Difficulties"]
+[node name="Easy" type="Button" parent="DifficultySelector/Difficulties"]
 layout_mode = 2
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2ltua")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1epg1")
@@ -105,7 +167,7 @@ button_group = ExtResource("6_ylim5")
 icon = ExtResource("22_qti4q")
 icon_alignment = 1
 
-[node name="Medium" type="Button" parent="Difficulties"]
+[node name="Medium" type="Button" parent="DifficultySelector/Difficulties"]
 layout_mode = 2
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wewpa")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_srqvy")
@@ -114,7 +176,7 @@ button_group = ExtResource("6_ylim5")
 icon = ExtResource("23_enl2v")
 icon_alignment = 1
 
-[node name="Hard" type="Button" parent="Difficulties"]
+[node name="Hard" type="Button" parent="DifficultySelector/Difficulties"]
 layout_mode = 2
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2e3wc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lmcfs")
@@ -123,43 +185,64 @@ button_group = ExtResource("6_ylim5")
 icon = ExtResource("24_3i47u")
 icon_alignment = 1
 
-[node name="DifficultiesTexts" type="HBoxContainer" parent="."]
+[node name="SpecialDifficultySelector" type="Control" parent="."]
 visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -191.5
-offset_top = 290.0
-offset_right = 191.5
-offset_bottom = 330.0
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DifficultiesTexts" type="HBoxContainer" parent="SpecialDifficultySelector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.5
+offset_top = -120.0
+offset_right = 191.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 90
 alignment = 1
 
-[node name="EasyText" type="Label" parent="DifficultiesTexts"]
+[node name="FireText" type="Label" parent="SpecialDifficultySelector/DifficultiesTexts"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("20_mepys")
 theme_override_font_sizes/font_size = 16
-text = "Easy"
+text = "Fire"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MediumText" type="Label" parent="DifficultiesTexts"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("20_mepys")
-theme_override_font_sizes/font_size = 16
-text = "Medium"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Difficulties" type="HBoxContainer" parent="SpecialDifficultySelector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -80.0
+offset_right = 188.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
 
-[node name="HardText" type="Label" parent="DifficultiesTexts"]
+[node name="Fire" type="Button" parent="SpecialDifficultySelector/Difficulties"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("20_mepys")
-theme_override_font_sizes/font_size = 16
-text = "Hard"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2ltua")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1epg1")
+toggle_mode = true
+button_group = ExtResource("6_ylim5")
+icon = ExtResource("25_13b3i")
+icon_alignment = 1
 
 [node name="SkinSelect" type="HBoxContainer" parent="."]
 anchors_preset = 8
@@ -167,10 +250,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -176.0
+offset_left = -267.0
 offset_top = -170.0
-offset_right = 176.0
-offset_bottom = -98.0
+offset_right = 267.0
+offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 100
@@ -199,15 +282,16 @@ icon = ExtResource("26_gtgd8")
 icon_alignment = 1
 
 [node name="SkinSelect2" type="HBoxContainer" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -176.0
-offset_top = 90.0
-offset_right = 176.0
-offset_bottom = 162.0
+offset_left = -260.0
+offset_top = 85.0
+offset_right = 259.0
+offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 100
@@ -236,9 +320,11 @@ icon = ExtResource("26_gtgd8")
 icon_alignment = 1
 
 [connection signal="button_down" from="StartButton" to="." method="finish"]
-[connection signal="toggled" from="Difficulties/Easy" to="." method="_on_easy_toggled"]
-[connection signal="toggled" from="Difficulties/Medium" to="." method="_on_medium_toggled"]
-[connection signal="toggled" from="Difficulties/Hard" to="." method="_on_hard_toggled"]
+[connection signal="toggled" from="ToggleSpecialDifficulty" to="." method="_on_toggle_special_difficulty_toggled"]
+[connection signal="toggled" from="DifficultySelector/Difficulties/Easy" to="." method="_on_easy_toggled"]
+[connection signal="toggled" from="DifficultySelector/Difficulties/Medium" to="." method="_on_medium_toggled"]
+[connection signal="toggled" from="DifficultySelector/Difficulties/Hard" to="." method="_on_hard_toggled"]
+[connection signal="toggled" from="SpecialDifficultySelector/Difficulties/Fire" to="." method="_on_fire_toggled"]
 [connection signal="button_down" from="SkinSelect/Left" to="." method="_on_left_button_down"]
 [connection signal="button_down" from="SkinSelect/Right" to="." method="_on_right_button_down"]
 [connection signal="button_down" from="SkinSelect2/Left2" to="." method="_on_left_2_button_down"]

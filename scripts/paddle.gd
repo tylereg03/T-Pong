@@ -9,11 +9,12 @@ signal hit
 
 enum Behavior {PLAYER, EASY, MEDIUM, HARD}
 
+
 # defines a paddle's reaction time (in seconds) before moving towards the ball
-var behavior_rt = {Behavior.PLAYER: 0.0, 
-				   Behavior.EASY: 0.85, 
-				   Behavior.MEDIUM: 0.65, 
-				   Behavior.HARD: 0.45}
+var behavior_reaction_time = {Behavior.PLAYER: 0.0, 
+							Behavior.EASY: 0.85, 
+							Behavior.MEDIUM: 0.65, 
+							Behavior.HARD: 0.45}
 
 # defines a paddle's movement speed (in pixels)
 var behavior_paddle_speed = {Behavior.PLAYER: 500, 
@@ -46,7 +47,7 @@ func _physics_process(delta):
 	# This determines the AI pattern
 	if ball.velocity.x > 0 and behavior != Behavior.PLAYER:
 		if not timer_started:
-			$ReactionTime.start(behavior_rt[behavior])
+			$ReactionTime.start(behavior_reaction_time[behavior])
 			timer_started = true
 		
 		if $ReactionTime.get_time_left() > 0:

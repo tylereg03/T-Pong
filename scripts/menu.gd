@@ -43,6 +43,7 @@ func set_state(new_state):
 
 # Play Button in Main Menu pressed
 func _on_play_pressed():
+	$Select.play()
 	set_state(MenuState.PLAYER_SELECT)
 
 # Quit Button in Main Menu pressed
@@ -52,13 +53,14 @@ func _on_quit_button_down():
 
 # 1 Player option pressed in Player select
 func _on_p_1_button_down():
+	$Select.play()
 	# hide 2P specifics and show 1P specifics
-	$SkinSelector/Difficulties.show()
-	$SkinSelector/DifficultiesTexts.show()
+	$SkinSelector/DifficultySelector.show()
+	$SkinSelector/ToggleSpecialDifficulty.show()
 	$SkinSelector/SkinSelect2.hide()
 	
 	# have easy automatically toggled to true
-	$SkinSelector/Difficulties/Easy.button_pressed = true
+	$SkinSelector/DifficultySelector/Difficulties/Easy.button_pressed = true
 	$SkinSelector._on_easy_toggled(true)
 	
 	set_state(MenuState.SKIN_SELECT)
@@ -66,9 +68,13 @@ func _on_p_1_button_down():
 
 # 2 Player option pressed in Player select
 func _on_p_2_button_down():
+	$Select.play()
+	
 	# hide 1P specifics and show 2P specifics
-	$SkinSelector/Difficulties.hide()
-	$SkinSelector/DifficultiesTexts.hide()
+	$SkinSelector/ToggleSpecialDifficulty.button_pressed = false
+	
+	$SkinSelector/DifficultySelector.hide()
+	$SkinSelector/ToggleSpecialDifficulty.hide()
 	$SkinSelector/SkinSelect2.show()
 	
 	$SkinSelector.behavior = Paddle.Behavior.PLAYER
@@ -78,6 +84,7 @@ func _on_p_2_button_down():
 
 # Skins chosen inside of skin selector, this will call for a new game to start
 func _on_skin_selector_start():
+	$Select.play()
 	behavior = $SkinSelector.behavior
 	p1_sprite = $SkinSelector.p1_sprite
 	p2_sprite = $SkinSelector.p2_sprite
@@ -89,6 +96,7 @@ func _on_skin_selector_start():
 # have "esc" either backtrack, or quit the game
 func _input(event):
 	if event.is_action_pressed("esc"):
+		$Select.play()
 		match curr_state:
 			MenuState.MAIN_MENU:
 				get_tree().quit()
