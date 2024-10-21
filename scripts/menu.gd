@@ -19,7 +19,8 @@ var curr_state
 
 
 # used to store information extracted from skin_selector
-var behavior
+var p2_difficulty
+var p2_type
 var p1_sprite
 var p2_sprite
 
@@ -60,6 +61,7 @@ func _on_p_1_button_down():
 	$SkinSelector/SkinSelect2.hide()
 	
 	# have easy automatically toggled to true
+	$SkinSelector.p2_type = Game.PaddleType.AI
 	$SkinSelector/DifficultySelector/Difficulties/Easy.button_pressed = true
 	$SkinSelector._on_easy_toggled(true)
 	
@@ -77,7 +79,7 @@ func _on_p_2_button_down():
 	$SkinSelector/ToggleSpecialDifficulty.hide()
 	$SkinSelector/SkinSelect2.show()
 	
-	$SkinSelector.behavior = Paddle.Behavior.PLAYER
+	$SkinSelector.p2_type = Game.PaddleType.PLAYER
 	
 	set_state(MenuState.SKIN_SELECT)
 
@@ -85,12 +87,13 @@ func _on_p_2_button_down():
 # Skins chosen inside of skin selector, this will call for a new game to start
 func _on_skin_selector_start():
 	$Select.play()
-	behavior = $SkinSelector.behavior
+	p2_difficulty = $SkinSelector.p2_difficulty
+	p2_type = $SkinSelector.p2_type
 	p1_sprite = $SkinSelector.p1_sprite
 	p2_sprite = $SkinSelector.p2_sprite
 	
 	$SkinSelector.hide()
-	game_start.emit(behavior, p1_sprite, p2_sprite)
+	game_start.emit(p2_type, p2_difficulty, p1_sprite, p2_sprite)
 
 # This keeps track of which hud element is currently visible, in order to
 # have "esc" either backtrack, or quit the game

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckalxewo4bw44"]
+
+[ext_resource type="PackedScene" uid="uid://3redrrrcwpw6" path="res://scenes/paddle_scenes/paddle.tscn" id="1_v2ggp"]
+[ext_resource type="Script" path="res://scripts/ai_paddle.gd" id="2_0du75"]
+
+[node name="AIPaddle" instance=ExtResource("1_v2ggp")]
+script = ExtResource("2_0du75")
+
+[node name="ReactionTime" type="Timer" parent="." index="3"]
+one_shot = true

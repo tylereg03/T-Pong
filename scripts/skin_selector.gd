@@ -41,7 +41,8 @@ var sprite1_display
 var sprite2_display
 
 # these will be accessed by HUD in order to retrieve the proper sprites/behavior
-var behavior
+var p2_difficulty
+var p2_type
 var p1_sprite
 var p2_sprite
 
@@ -95,27 +96,28 @@ func _on_right_2_button_down():
 # ONLY ACCESSIBLE FOR 1 PLAYER, Easy button toggled
 func _on_easy_toggled(toggled_on):
 	if toggled_on:
-		behavior = Paddle.Behavior.EASY
+		p2_difficulty = Game.AIPaddleDifficulty.EASY
 		p2_current_texture_index = ai_sprites_index[AI_Sprites.EASY]
 		update_texture()
 
 # ONLY ACCESSIBLE FOR 1 PLAYER, Medium button toggled
 func _on_medium_toggled(toggled_on):
 	if toggled_on:
-		behavior = Paddle.Behavior.MEDIUM
+		p2_difficulty = Game.AIPaddleDifficulty.MEDIUM
 		p2_current_texture_index = ai_sprites_index[AI_Sprites.MEDIUM]
 		update_texture()
 		
 # ONLY ACCESSIBLE FOR 1 PLAYER, Hard button toggled
 func _on_hard_toggled(toggled_on):
 	if toggled_on:
-		behavior = Paddle.Behavior.HARD
+		p2_difficulty = Game.AIPaddleDifficulty.HARD
 		p2_current_texture_index = ai_sprites_index[AI_Sprites.HARD]
 		update_texture()
 	
 func _on_fire_toggled(toggled_on):
 	if toggled_on:
-		behavior = Paddle.Behavior.HARD
+		p2_difficulty = Game.AIPaddleDifficulty.HARD
+		p2_type = Game.PaddleType.FIRE
 		p2_current_texture_index = ai_sprites_index[AI_Sprites.FIRE]
 		update_texture()
 	

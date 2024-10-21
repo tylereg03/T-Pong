@@ -9,10 +9,35 @@ enum GameplayState {
 	WIN
 }
 
+enum AIPaddleDifficulty {
+	EASY,
+	MEDIUM,
+	HARD,
+}
+
+enum PaddleType {
+	PLAYER,
+	AI,
+	FIRE
+}
+
+var paddle_type_scenes = {
+	PaddleType.PLAYER: preload("res://scenes/paddle_scenes/player_paddle.tscn"),
+	PaddleType.AI: preload("res://scenes/paddle_scenes/ai_paddle.tscn")
+}
+
+# First element is the paddle speed, second element is the reaction time
+var paddle_difficulty_attributes = {
+	AIPaddleDifficulty.EASY: [200, 0.85],
+	AIPaddleDifficulty.MEDIUM: [300, 0.65],
+	AIPaddleDifficulty.HARD: [400, 0.45]
+}
+
+
 signal game_end
 
-@export var paddle_scene = preload("res://scenes/paddle.tscn")
-@export var ball_scene = preload("res://scenes/ball.tscn")
+var paddle_scene = preload("res://scenes/paddle_scenes/paddle.tscn")
+var ball_scene = preload("res://scenes/ball.tscn")
 
 @onready var p1_score_text = $HUD/Player1Score
 @onready var p2_score_text = $HUD/Player2Score
@@ -20,14 +45,13 @@ signal game_end
 const MAX_SCORE = 7
 const MAX_SPEED = 600
 const MIN_SPEED = 150
-const P1_BEHAVIOR = Paddle.Behavior.PLAYER
 var p1_score = 0
 var p2_score = 0
 var ball_direction = 1
 
 
 var ball
-var p1_paddle
+var p1_paddle: PlayerPaddle
 var p2_paddle
 var ball_spawn
 var curr_state
@@ -64,17 +88,27 @@ func inst(scene):
 
 
 # Called whenever a new game has been started
-func new_game(behavior, p1_sprite, p2_sprite):	
+func new_game(p2_type, p2_difficulty, p1_sprite, p2_sprite):	
 	var p1_paddle_spawn = Vector2(64, 64)
 	var p2_paddle_spawn = Vector2(screen_size.x-64, screen_size.y-64)
 	ball_spawn = Vector2(screen_size.x/2, screen_size.y/2)
 	
-	instantiate_game_objects()
+	instantiate_game_objects(p2_type)
 	
 	setup_ball(ball, ball_spawn)
-	setup_paddle(p1_paddle, p1_paddle_spawn, P1_BEHAVIOR, p1_sprite, "move_up", "move_down")
-	setup_paddle(p2_paddle, p2_paddle_spawn, behavior, p2_sprite, "move_up_2", "move_down_2")
 	
+	setup_paddle(p1_paddle, p1_paddle_spawn, p1_sprite)
+	p1_paddle.setup_player_paddle("move_up", "move_down")
+	
+	setup_paddle(p2_paddle, p2_paddle_spawn, p2_sprite)
+	var ai_speed = paddle_difficulty_attributes[p2_difficulty][0]
+	var ai_reaction_time = paddle_difficulty_attributes[p2_difficulty][1]
+	match p2_type:
+		PaddleType.PLAYER:
+			p2_paddle.setup_player_paddle("move_up_2", "move_down_2")
+		PaddleType.AI:
+			p2_paddle.setup_ai_paddle(ai_speed, ai_reaction_time, ball)
+			
 	$HUD.show()
 	$HUD/ServeMessage.show()
 	$HUD/WinMessage.hide()
@@ -82,10 +116,10 @@ func new_game(behavior, p1_sprite, p2_sprite):
 
 
 # Instantiates all objects necessary for pong to work
-func instantiate_game_objects():
+func instantiate_game_objects(p2_type):
 	ball = inst(ball_scene)
-	p1_paddle = inst(paddle_scene)
-	p2_paddle = inst(paddle_scene)
+	p1_paddle = inst(paddle_type_scenes[PaddleType.PLAYER])
+	p2_paddle = inst(paddle_type_scenes[p2_type])
 
 
 # Sets up the ball to connect it's signal, and spawn in the correct place
@@ -96,17 +130,10 @@ func setup_ball(new_ball, pos):
 
 # Sets up the paddles to connect their signals, spawn in the right place,
 # take on the correct behavior, the correct sprite, and keep track of the ball
-func setup_paddle(new_paddle, pos, behavior, sprite, up, down):
+func setup_paddle(new_paddle, pos, sprite):
 	new_paddle.hit.connect(_on_paddle_hit)
 	new_paddle.position = pos
 	new_paddle.get_node("Sprite2D").texture = sprite
-	new_paddle.behavior = behavior
-	
-	if behavior == Paddle.Behavior.PLAYER:
-		new_paddle.up_action = up
-		new_paddle.down_action = down
-		
-	new_paddle.ball = ball
 
 # Called by ball whenever space is pressed to serve the ball
 func serve():
